@@ -2,6 +2,7 @@ package skywolf46.localwatchdog.ui
 
 import com.sun.jna.platform.win32.User32
 import com.sun.jna.platform.win32.WinDef
+import com.sun.jna.platform.win32.WinDef.HWND
 import com.sun.jna.platform.win32.WinUser
 import java.awt.Color
 import java.awt.Graphics
@@ -35,4 +36,9 @@ abstract class DrawableOverlay : JFrame() {
         wl = wl or 0x80000 or 0x20
         User32.INSTANCE.SetWindowLong(hwnd, WinUser.GWL_EXSTYLE, wl)
     }
+
+    protected open fun findScreen() : HWND {
+        return User32.INSTANCE.FindWindow("SunAwtFrame", screenName)
+    }
+
 }
