@@ -20,10 +20,12 @@ object TargetDisplayOverlay : DrawableOverlay() {
     var displayedImage: BufferedImage? = null
 
     override fun draw(g: Graphics2D) {
+
         if (displayedImage != null)
             g.drawImage(displayedImage, 0, 0, width, height, null)
         else  {
-            g.paint = Color(0, 0, 0)
+            super.paintComponents(g)
+            g.paint = Color(255, 255, 255)
 
             val layout = TextLayout(
                 "-- No Signal --",

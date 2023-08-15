@@ -136,8 +136,6 @@ object ScreenCaptureUtil {
         return User32.INSTANCE.GetForegroundWindow() != null && User32.INSTANCE.GetForegroundWindow().pointer == targetWindow.pointer
     }
 
-
-
     interface DwmApi : User32 {
         fun DwmRegisterThumbnail(dest: HWND?, src: HWND?, thumbnailId: PointerByReference?): HRESULT
         fun DwmUnregisterThumbnail(thumbnailId: Pointer): HRESULT

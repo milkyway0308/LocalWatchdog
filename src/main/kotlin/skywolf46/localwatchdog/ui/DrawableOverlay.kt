@@ -17,18 +17,19 @@ abstract class DrawableOverlay : JFrame() {
     init {
         title = screenName
         isUndecorated = true
-        background =    Color(0, 0, 0, 0)
+        background = Color(0, 0, 0, 0)
         rootPane.putClientProperty("apple.awt.draggableWindowBackground", false)
         type = Type.UTILITY
     }
 
     override fun paint(g: Graphics) {
+        super.paint(g)
         draw(g as Graphics2D)
     }
 
     abstract fun draw(g: Graphics2D)
 
-    fun display() {
+    open fun display() {
         isAlwaysOnTop = true
         isVisible = true
         val hwnd: WinDef.HWND = User32.INSTANCE.FindWindow("SunAwtFrame", screenName)
@@ -37,8 +38,9 @@ abstract class DrawableOverlay : JFrame() {
         User32.INSTANCE.SetWindowLong(hwnd, WinUser.GWL_EXSTYLE, wl)
     }
 
-    protected open fun findScreen() : HWND {
+    protected open fun findScreen(): HWND {
         return User32.INSTANCE.FindWindow("SunAwtFrame", screenName)
     }
+
 
 }
